@@ -403,9 +403,7 @@ const searchName = (req, res) => {
 
     // if no matches, let them know
     // (does not necessarily have to be an error since technically it worked correctly)
-    if (!doc) {
-      return res.json({ error: 'No cats found' });
-    }
+    updateLastDog(req, res);
 
     // if a match, send the match back
     return res.json({ name: doc.name, beds: doc.bedsOwned });
