@@ -20,7 +20,7 @@ const defaultDataDog = {
 // object for us to keep track of the last Cat we made and dynamically update it sometimes
 let lastAdded = new Cat(defaultData);
 
-const lastAddedDog = new Dog(defaultDataDog);
+let lastAddedDog = new Dog(defaultDataDog);
 
 // function to handle requests to the main page
 // controller functions in Express receive the full HTTP request
@@ -238,7 +238,6 @@ const setNameDog = (req, res) => {
 // controller functions in Express receive the full HTTP request
 // and a pre-filled out response object to send
 const searchNameDog = (req, res) => {
-  
   if (!req.query.name) {
     return res.json({ error: 'Name is required to perform a search' });
   }
@@ -264,9 +263,10 @@ const searchNameDog = (req, res) => {
 
     // if a match, send the match back
     // increments age first
-    
-    doc.age++;
-    return res.json({ name: doc.name, breed: doc.breed, age: doc.age });
+
+    let age = doc.age;
+    age++;
+    return res.json({ name: doc.name, breed: doc.breed, age: age });
   });
 };
 
@@ -474,3 +474,4 @@ module.exports = {
   searchName,
   notFound,
 };
+
